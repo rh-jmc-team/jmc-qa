@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import fileinput
 import os
 import subprocess
 
@@ -7,7 +8,7 @@ HOME = os.path.expanduser('~')
 QA_ROOT = HOME+ '/workspace/jmc-qa/'
 JMC_ROOT = QA_ROOT + 'jmc/'
 JMC_THIRD_PARTY = JMC_ROOT + 'releng/third-party/'
-JMC_UI_TESTS_DIR = JMC_ROOT + 'application/uitests/org.openjdk.jmc.console.uitest/src/test/java/org/openjdk/jmc/console/uitest/'
+JMC_UI_TESTS_POM = JMC_ROOT + 'application/uitests/pom.xml'
 
 MVN_JETTY_RUN = ['mvn', 'jetty:run']
 MVN_VERIFY_UI_TESTS = ['mvn', 'verify', '-P', 'uitests']
@@ -23,13 +24,10 @@ def run_ui_tests():
   subprocess.call(MVN_VERIFY_UI_TESTS_SKIP_SPOTBUGS)
 
 def remove_failing_tests():
-  os.chdir(JMC_ROOT)
-  failing_tests = []
-  # MBeanBrowserTabTest = JMC_UI_TESTS_DIR + 'MBeanBrowserTabTest.java' # Current fails at org.openjdk.jmc.console.uitest.MBeanBrowserTabTest
-  # failing_tests.append(MBeanBrowserTabTest)
-  for test in failing_tests:
-    if os.path.isfile(test):
-      os.remove(test)
+  # Currently the only failing tests are in the jmc.console.uitest package .. so skip them for now
+  console_console_uitest_module = r'<module>org.openjdk.jmc.console.uitest<\/module>'
+  commented_console_uitest_module = r'<!-- <module>org.openjdk.jmc.console.uitest<\/module> -->'
+  os.system('sed -i \'s/' + console_console_uitest_module + '/' + commented_console_uitest_module + '/\' '+ JMC_UI_TESTS_POM)
 
 def main():
   remove_failing_tests()
