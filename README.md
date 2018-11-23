@@ -1,14 +1,16 @@
 # JMC QA
 
-Collection of scripts to download and setup JMC, setup Jemmy, and run tests.
+Collection of scripts to download and setup Java Mission Control (JMC), setup the Jemmy ui test library, and run tests (unit & uitests).
+
+Note: these instructions and scripts currently apply to the Fedora OS and may require adjustments to run properly otherwise.
 
 ## Requirements
 
 1. mercurial
 2. maven
-3. openjfx
+3. openjfx (supplied by the `java-1.8.0-openjdk-openjfx` package)
 
-On Fedora this can be accomplished with: `sudo dnf install java-11-openjdk mercurial maven openjfx`
+On Fedora this can be accomplished with: `sudo dnf install mercurial maven java-1.8.0-openjdk-openjfx`
 
 ## Running the scripts
 
