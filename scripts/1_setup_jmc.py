@@ -46,6 +46,7 @@ def main():
   proc = jetty_run()
   build_jmc_core()
   proc.kill()
+  build_jmc()
 
 if __name__ == '__main__':
   main()
