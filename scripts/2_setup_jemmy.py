@@ -12,7 +12,7 @@ JMC_ROOT = QA_ROOT + 'jmc/'
 JMC_JEMMY_LIB = JMC_ROOT + '/application/uitests/org.openjdk.jmc.test.jemmy/lib/'
 
 JEMMY_REPO = 'http://hg.openjdk.java.net/code-tools/jemmy/v3/'
-HG_CLONE_JEMMY = ['hg', 'clone', JEMMY_REPO, '../jemmy']
+HG_CLONE_JEMMY = ['hg', 'clone', JEMMY_REPO, JEMMY_ROOT]
 
 MVN_CLEAN_PACKAGE = ['mvn', 'clean', 'package'] # fails at the moment
 MVN_CLEAN_PACKAGE_SKIP_TESTS = ['mvn', 'clean', 'package', '-DskipTests']
