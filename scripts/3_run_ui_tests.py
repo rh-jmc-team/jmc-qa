@@ -22,7 +22,7 @@ def jetty_run():
 
 def run_ui_tests():
   os.chdir(JMC_ROOT)
-  subprocess.call(MVN_VERIFY_UI_TESTS_SKIP_SPOTBUGS)
+  return subprocess.call(MVN_VERIFY_UI_TESTS_SKIP_SPOTBUGS)
 
 def remove_failing_tests():
   # The test causing failure is MBeansTest.intermittentMBeanTest() in jmc.console.uitest
@@ -32,7 +32,8 @@ def remove_failing_tests():
 def main():
   remove_failing_tests()
   proc = jetty_run()
-  run_ui_tests()
+  if run_ui_tests() != 0:
+    raise Exception('uitests have failed to pass!')
   proc.kill()
 
 if __name__ == '__main__':

@@ -18,12 +18,11 @@ MVN_CLEAN_PACKAGE = ['mvn', 'clean', 'package'] # fails at the moment
 MVN_CLEAN_PACKAGE_SKIP_TESTS = ['mvn', 'clean', 'package', '-DskipTests']
 
 def clone_jemmy():
-  if os.path.isdir(JEMMY_ROOT) is False:
-    subprocess.call(HG_CLONE_JEMMY)
+  return subprocess.call(HG_CLONE_JEMMY)
 
 def build_jemmy():
   os.chdir(JEMMY_ROOT)
-  subprocess.call(MVN_CLEAN_PACKAGE_SKIP_TESTS)
+  return subprocess.call(MVN_CLEAN_PACKAGE_SKIP_TESTS)
 
 def transfer_jars():
   if not os.path.exists(JMC_JEMMY_LIB):
@@ -35,8 +34,10 @@ def transfer_jars():
       shutil.copy(jar, JMC_JEMMY_LIB)
     
 def main():
-  clone_jemmy()
-  build_jemmy()
+  if clone_jemmy() != 0:
+    raise Exception('Unable to clone Jemmy!')
+  if build_jemmy() != 0:
+    raise Exception('Unable to build Jemmy!')
   transfer_jars()
 
 if __name__ == '__main__':
