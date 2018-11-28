@@ -20,12 +20,11 @@ MVN_P2_SITE = ['mvn', 'p2:site']
 MVN_JETTY_RUN = ['mvn', 'jetty:run']
 
 def clone_repo():
-  if not os.path.isdir(JMC_ROOT):
-    subprocess.call(HG_CLONE_JMC)
+  return subprocess.call(HG_CLONE_JMC)
 
 def p2site():
   os.chdir(JMC_THIRD_PARTY)
-  subprocess.call(MVN_P2_SITE)
+  return subprocess.call(MVN_P2_SITE)
 
 def jetty_run():
   os.chdir(JMC_THIRD_PARTY)
@@ -34,19 +33,23 @@ def jetty_run():
   
 def build_jmc_core():
   os.chdir(JMC_CORE)
-  subprocess.call(MVN_CLEAN_INSTALL)
+  return subprocess.call(MVN_CLEAN_INSTALL)
 
 def build_jmc():
   os.chdir(JMC_ROOT)
-  subprocess.call(MVN_PACKAGE)
+  return subprocess.call(MVN_PACKAGE)
 
 def main():
-  clone_repo()
-  p2site()
+  if clone_repo() != 0:
+    raise Exception('Unable to clone JMC!')
+  if p2site() != 0:
+    raise Exception('Unable to setup p2 repository!')
   proc = jetty_run()
-  build_jmc_core()
+  if build_jmc_core() != 0:
+    raise Exception('Unable to build JMC Core!')
   proc.kill()
-  build_jmc()
+  if build_jmc() != 0:
+    raise Exception('Unable to build JMC!')
 
 if __name__ == '__main__':
   main()
