@@ -8,7 +8,8 @@ HOME = os.path.expanduser('~')
 QA_ROOT = HOME+ '/workspace/jmc-qa/'
 JMC_ROOT = QA_ROOT + 'jmc/'
 JMC_THIRD_PARTY = JMC_ROOT + 'releng/third-party/'
-JMC_UI_TESTS_POM = JMC_ROOT + 'application/uitests/pom.xml'
+JMC_CONSOLE_UITEST_DIR = JMC_ROOT + 'application/uitests/org.openjdk.jmc.console.uitest/'
+MBeansTest_intermittentMBeanTest = JMC_CONSOLE_UITEST_DIR + 'src/test/java/org/openjdk/jmc/console/uitest/MBeansTest.java'
 
 MVN_JETTY_RUN = ['mvn', 'jetty:run']
 MVN_VERIFY_UI_TESTS = ['mvn', 'verify', '-P', 'uitests']
@@ -24,10 +25,9 @@ def run_ui_tests():
   subprocess.call(MVN_VERIFY_UI_TESTS_SKIP_SPOTBUGS)
 
 def remove_failing_tests():
-  # Currently the only failing tests are in the jmc.console.uitest package .. so skip them for now
-  console_console_uitest_module = r'<module>org.openjdk.jmc.console.uitest<\/module>'
-  commented_console_uitest_module = r'<!-- <module>org.openjdk.jmc.console.uitest<\/module> -->'
-  os.system('sed -i \'s/' + console_console_uitest_module + '/' + commented_console_uitest_module + '/\' '+ JMC_UI_TESTS_POM)
+  # The test causing failure is MBeansTest.intermittentMBeanTest() in jmc.console.uitest
+  os.system('sed -i \'125,150 s/^/\/\//\' ' + MBeansTest_intermittentMBeanTest)
+
 
 def main():
   remove_failing_tests()
