@@ -1,5 +1,9 @@
 # Scripts
 
+## run.py
+
+This script executes the following three scripts:
+
 ## 1_setup_jmc.py
 
 This script downloads and builds Java Mission Control (JMC). It gets third party dependencies and puts them into a local p2 repo that is served by Jetty in a child process. While the p2 repo is available on localhost, JMC is built as outlined in the source documentation.
