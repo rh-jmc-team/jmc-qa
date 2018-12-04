@@ -1,4 +1,4 @@
-# JMC QA
+# JMC QA [![Build Status](https://travis-ci.org/aptmac/jmc-qa.svg?branch=master)](https://travis-ci.org/aptmac/jmc-qa)
 
 Collection of scripts to download and setup Java Mission Control (JMC), setup the Jemmy ui test library, and run tests (unit & uitests).
 
