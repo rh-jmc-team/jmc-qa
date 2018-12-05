@@ -3,6 +3,7 @@
 JMC_QA=~/workspace/jmc-qa
 JMC_ROOT=$JMC_QA/jmc
 JMC_CORE=$JMC_ROOT/core
+JMC_THIRD_PARTY=$JMC_ROOT/releng/third-party
 JMC_CONSOLE_UITEST_DIR=$JMC_ROOT/application/uitests/org.openjdk.jmc.console.uitest
 MBeansTest_intermittentMBeanTest=$JMC_CONSOLE_UITEST_DIR/src/test/java/org/openjdk/jmc/console/uitest/MBeansTest.java
 
