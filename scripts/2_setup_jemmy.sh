@@ -18,10 +18,10 @@ if [ -d $JEMMY_ROOT ]; then
 fi
 
 # clone the jemmy repo
-hg clone $JEMMY_REPO $JEMMY_ROOT;
+hg clone $JEMMY_REPO $JEMMY_ROOT  || { exit 1; };
 
 # build jemmy
-mvn clean package -DskipTests -f $JEMMY_ROOT;
+mvn clean package -DskipTests -f $JEMMY_ROOT || { exit 1; };
 
 # create the jemmy lib folder
 mkdir $JMC_JEMMY_LIB;
@@ -34,7 +34,6 @@ done
 for jar in `ls $JEMMY_BROWSER | grep .jar`; do
   mv $JEMMY_BROWSER/$jar $JMC_JEMMY_LIB;
 done
-
 
 for jar in `ls $JEMMY_CORE | grep .jar`; do
   mv $JEMMY_CORE/$jar $JMC_JEMMY_LIB;

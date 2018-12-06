@@ -28,20 +28,20 @@ if [ -d $JMC_ROOT ]; then
 fi
 
 # clone the jmc repo
-hg clone $JMC_REPO $JMC_ROOT;
+hg clone $JMC_REPO $JMC_ROOT || { exit 1; };
 
 # setup the p2 repository
-mvn p2:site -f $JMC_THIRD_PARTY/pom.xml;
+mvn p2:site -f $JMC_THIRD_PARTY/pom.xml || { exit 1; };
 
 # run the jetty server in the background
 mvn jetty:run -f $JMC_THIRD_PARTY/pom.xml &
 jetty_pid=$!;
 
 # build jmc-core
-mvn clean install -f $JMC_CORE/pom.xml;
+mvn clean install -f $JMC_CORE/pom.xml || { exit 1; };
 
 # build jmc
-mvn package -f $JMC_ROOT/pom.xml;
+mvn package -f $JMC_ROOT/pom.xml || { exit 1; };
 
 # kill the jetty process
 kill $jetty_pid;
@@ -53,10 +53,10 @@ if [ -d $JEMMY_ROOT ]; then
 fi
 
 # clone the jemmy repo
-hg clone $JEMMY_REPO $JEMMY_ROOT;
+hg clone $JEMMY_REPO $JEMMY_ROOT || { exit 1; };
 
 # build jemmy
-mvn clean package -DskipTests -f $JEMMY_ROOT;
+mvn clean package -DskipTests -f $JEMMY_ROOT || { exit 1; };
 
 # create the jemmy lib folder
 mkdir $JMC_JEMMY_LIB;
@@ -69,7 +69,6 @@ done
 for jar in `ls $JEMMY_BROWSER | grep .jar`; do
   mv $JEMMY_BROWSER/$jar $JMC_JEMMY_LIB;
 done
-
 
 for jar in `ls $JEMMY_CORE | grep .jar`; do
   mv $JEMMY_CORE/$jar $JMC_JEMMY_LIB;
@@ -88,7 +87,7 @@ jetty_pid=$!;
 sed -i '125,150 s/^/\/\//' $MBeansTest_intermittentMBeanTest
 
 # run ui tests
-mvn verify -P uitests -Dspotbugs.skip=true -f $JMC_ROOT;
+mvn verify -P uitests -Dspotbugs.skip=true -f $JMC_ROOT || { exit 1; };
 
 # kill the jetty process
 kill $jetty_pid;
