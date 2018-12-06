@@ -15,7 +15,7 @@ jetty_pid=$!;
 sed -i '125,150 s/^/\/\//' $MBeansTest_intermittentMBeanTest
 
 # run ui tests
-mvn verify -P uitests -Dspotbugs.skip=true -f $JMC_ROOT;
+mvn verify -P uitests -Dspotbugs.skip=true -f $JMC_ROOT || { exit 1; };
 
 # kill the jetty process
 kill $jetty_pid;
