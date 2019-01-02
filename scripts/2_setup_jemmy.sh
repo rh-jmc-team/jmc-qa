@@ -22,7 +22,7 @@ fi
 hg clone $JEMMY_REPO $JEMMY_ROOT  || { exit 1; };
 
 # build jemmy
-mvn clean package -DskipTests -f $JEMMY_ROOT || { exit 1; };
+mvn clean package -DskipTests --quiet -f $JEMMY_ROOT || { exit 1; };
 
 # create the jemmy lib folder
 mkdir $JMC_JEMMY_LIB;
