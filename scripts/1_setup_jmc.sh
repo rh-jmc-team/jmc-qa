@@ -18,7 +18,7 @@ hg clone $JMC_REPO $JMC_ROOT || { exit 1; };
 mvn p2:site -f $JMC_THIRD_PARTY/pom.xml || { exit 1; };
 
 # run the jetty server in the background
-mvn jetty:run -f $JMC_THIRD_PARTY/pom.xml &;
+mvn jetty:run -f $JMC_THIRD_PARTY/pom.xml &
 jetty_pid=$!;
 
 # build jmc-core
