@@ -1,10 +1,5 @@
 #!/bin/bash
-
-JMC_QA=~/workspace/jmc-qa
-JMC_ROOT=$JMC_QA/jmc
-JMC_CORE=$JMC_ROOT/core
-JMC_THIRD_PARTY=$JMC_ROOT/releng/third-party
-JMC_REPO=http://hg.openjdk.java.net/jmc/jmc/
+source $(dirname "$0")/config.sh
 
 # if a jmc folder already exists, remove it prior to cloning
 if [ -d $JMC_ROOT ]; then
