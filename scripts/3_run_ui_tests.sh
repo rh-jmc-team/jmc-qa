@@ -11,7 +11,8 @@ jetty_pid=$!;
 sed -i '53 i 		display.setCursorLocation(0, 0);' $RCP_APPLICATION_JAVA
 
 # run ui tests
-mvn verify -P uitests -Dspotbugs.skip=true -f $JMC_ROOT/pom.xml || { kill $jetty_pid; exit 1; };
+cd $JMC_ROOT
+mvn verify -P uitests || { kill $jetty_pid; exit 1; };
 
 # kill the jetty process
 kill $jetty_pid;
