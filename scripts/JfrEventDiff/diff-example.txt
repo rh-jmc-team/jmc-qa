@@ -1,0 +1,78 @@
+---Metadata Diff Report---
+
+Event: BiasedLockRevocation
+File 1: Field safepointId @type = int
+File 2: Field safepointId @type = ulong 
+
+Event: BiasedLockClassRevocation
+File 1: Field safepointId @type = int
+File 2: Field safepointId @type = ulong 
+
+Event: MetaspaceAllocationFailure
+File 1: Field anonymousClassLoader @name = anonymousClassLoader
+File 2: Field anonymousClassLoader @name = unsafeAnonymousClassLoader 
+
+File 1: Field anonymousClassLoader @label = Anonymous Class Loader
+File 2: Field anonymousClassLoader @label = Unsafe Anonymous Class Loader 
+
+Event: MetaspaceOOM
+File 1: Field anonymousClassLoader @name = anonymousClassLoader
+File 2: Field anonymousClassLoader @name = unsafeAnonymousClassLoader 
+
+File 1: Field anonymousClassLoader @label = Anonymous Class Loader
+File 2: Field anonymousClassLoader @label = Unsafe Anonymous Class Loader 
+
+Event: SafepointBegin
+File 1: Field safepointId @type = int
+File 2: Field safepointId @type = ulong 
+
+Event: SafepointStateSynchronization
+File 1: Field safepointId @type = int
+File 2: Field safepointId @type = ulong 
+
+Event: SafepointWaitBlocked
+File 1: Field safepointId @type = int
+File 2: Field safepointId @type = ulong 
+
+Event: SafepointCleanup
+File 1: Field safepointId @type = int
+File 2: Field safepointId @type = ulong 
+
+Event: SafepointCleanupTask
+File 1: Field safepointId @type = int
+File 2: Field safepointId @type = ulong 
+
+Event: SafepointEnd
+File 1: Field safepointId @type = int
+File 2: Field safepointId @type = ulong 
+
+Event: ExecuteVMOperation
+File 1: Field safepointId @type = int
+File 2: Field safepointId @type = ulong 
+
+Event: ClassLoaderStatistics
+File 1: Field anonymousClassCount @name = anonymousClassCount
+File 2: Field anonymousClassCount @name = unsafeAnonymousClassCount 
+
+File 1: Field anonymousChunkSize @name = anonymousChunkSize
+File 2: Field anonymousChunkSize @name = unsafeAnonymousChunkSize 
+
+File 1: Field anonymousChunkSize @description = Total size of all allocated metaspace chunks for anonymous classes (each chunk has several blocks)
+File 2: Field anonymousChunkSize @description = Total size of all allocated metaspace chunks for unsafe anonymous classes (each chunk has several blocks) 
+
+File 1: Field anonymousBlockSize @name = anonymousBlockSize
+File 2: Field anonymousBlockSize @name = unsafeAnonymousBlockSize 
+
+File 1: Field anonymousBlockSize @description = Total size of all allocated metaspace blocks for anonymous classes (each chunk has several blocks)
+File 2: Field anonymousBlockSize @description = Total size of all allocated metaspace blocks for unsafe anonymous classes (each chunk has several blocks) 
+
+Event: GCPhaseParallel
+File 1: DNE
+File 2: New Event - GCPhaseParallel
+Addition of 3 fields
+
+---Results---
+Number of changes: 18
+Number of Event additions/removals: 1
+Number of Event Field addition/removals: 3
+Total number of changes: 22

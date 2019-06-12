@@ -1,5 +1,13 @@
 # Scripts
 
+## JfrEventDiff
+
+A Python script for spotting difference between two JFR metadata files.
+
+## config.sh
+
+This script contains common paths to be used in the following scripts.
+
 ## run.sh
 
 This script sequentially executes the following three scripts:
