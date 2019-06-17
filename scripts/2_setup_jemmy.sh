@@ -9,6 +9,11 @@ fi
 # clone the jemmy repo
 hg clone $JEMMY_REPO $JEMMY_ROOT  || { exit 1; };
 
+# revert Jemmy to the pre-package conflict revision
+cd $JEMMY_ROOT;
+hg update -r 7f267a1c3d63;
+cd ..;
+
 # build jemmy
 mvn clean package -DskipTests --quiet -f $JEMMY_ROOT/pom.xml || { exit 1; };
 
