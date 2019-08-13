@@ -19,8 +19,5 @@ jetty_pid=$!;
 # build jmc-core
 mvn clean install --quiet -f $JMC_CORE/pom.xml || { exit 1; };
 
-# build jmc
-mvn package --quiet -f $JMC_ROOT/pom.xml || { exit 1; };
-
 # kill the jetty process
 kill $jetty_pid;

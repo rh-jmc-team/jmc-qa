@@ -12,7 +12,7 @@ sed -i '53 i 		display.setCursorLocation(0, 0);' $RCP_APPLICATION_JAVA
 
 # run ui tests
 cd $JMC_ROOT
-mvn verify -P uitests || { kill $jetty_pid; exit 1; };
+mvn verify --quiet -P uitests -Dspotbugs.skip=true || { kill $jetty_pid; exit 1; };
 
 # kill the jetty process
 kill $jetty_pid;
