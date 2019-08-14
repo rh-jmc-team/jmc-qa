@@ -1,8 +1,11 @@
-# JMC QA [![Build Status](https://travis-ci.org/aptmac/jmc-qa.svg?branch=master)](https://travis-ci.org/aptmac/jmc-qa)
+# JMC QA
+<b>Linux</b> (Ubuntu Trusty) [![Build Status](https://travis-ci.org/aptmac/jmc-qa.svg?branch=master)](https://travis-ci.org/aptmac/jmc-qa)<br>
+<b>macOS</b> (macOS 10.13) [![Build Status](https://travis-ci.org/aptmac/jmc-qa.svg?branch=osx)](https://travis-ci.org/aptmac/jmc-qa)<br>
+<b>Windows</b> (Windows Server 1803) [![Build Status](https://travis-ci.org/aptmac/jmc-qa.svg?branch=windows)](https://travis-ci.org/aptmac/jmc-qa)
 
-Collection of scripts to download and setup Java Mission Control (JMC), setup the Jemmy ui test library, and run tests (unit & uitests).
+Collection of scripts to download and setup Java Mission Control (JMC), setup the Jemmy ui test library, and run tests (unit & uitests*).
 
-Note: these instructions and scripts currently apply to the Fedora OS and may require adjustments to run properly otherwise.
+\* uitests currently only run properly in Travis for Linux builds
 
 ## Requirements
 
